@@ -1,0 +1,13 @@
+/* partials */
+@import "partials/variables";
+@import "partials/mixins";
+@import "partials/base";
+
+/* components */
+@import "../../app/components/clock/clock.scss";
+/* end: components */
+
+/* modules */
+@import "../../app/modules/main/styles/main.scss";
+@import "../../app/modules/main/directives/test/test.scss";
+/* end: modules */

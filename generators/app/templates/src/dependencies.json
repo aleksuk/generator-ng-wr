@@ -1,0 +1,24 @@
+{
+  "development": {
+    "libs": [
+      "assets/libs/jquery/dist/jquery.js",
+      "assets/libs/angular/angular.js",
+      "assets/libs/angular-ui-router/release/angular-ui-router.js"
+    ],
+
+    "css": [
+      "assets/libs/bootstrap/dist/css/bootstrap.css",
+      "assets/styles/main.css"
+    ],
+
+    "js": [
+      "app/init.js",
+      "app/modules/main/main.module.js",
+      "app/modules/main/controllers/main.controller.js",
+      "app/modules/main/services/main.service.js",
+      "app/modules/main/directives/test/test.directive.js",
+      "app/components/clock/clock.directive.js",
+      "app/components/clock/clock.service.js"
+    ]
+  }
+}

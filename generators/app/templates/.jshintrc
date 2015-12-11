@@ -1,0 +1,21 @@
+{
+  "undef": true,
+  "bitwise": true,
+  "unused": true,
+  "notypeof": true,
+  "es3": true,
+  "es5": true,
+  "curly": true,
+  "eqeqeq": true,
+  "freeze": true,
+  "funcscope": true,
+  "latedef": false,
+  "maxcomplexity": 3,
+  "noarg": true,
+  "nocomma": true,
+  "globals": [
+    "angular",
+    "jQuery",
+    "$"
+  ]
+}
