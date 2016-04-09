@@ -19,7 +19,7 @@ module.exports = yeoman.generators.Base.extend({
   },
 
   writing: function () {
-    this.fs.copy(
+    this.fs.copyTpl(
       this.templatePath('view.html'),
       this.destinationPath(this['_get' + this.type + 'Path']()),
       { name: this.name }

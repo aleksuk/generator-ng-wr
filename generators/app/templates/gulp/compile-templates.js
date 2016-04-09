@@ -7,15 +7,15 @@ var gulp = require('gulp'),
 
 function compileTemplates(pathTO, prefix) {
 	return gulp.src(
-		path.join(prefix, '/app/**/*.html')
-	)
+      path.join(prefix, '/app/**/*.html')
+    )
 		.pipe(templateCache({
 			root: 'app',
 			module: 'ELearning'
 		}))
 		.pipe(
-		gulp.dest(path.join(pathTO, '/app'))
-	);
+      gulp.dest(path.join(pathTO, '/app'))
+    );
 }
 
 gulp.task('compile:templates', function () {

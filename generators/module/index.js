@@ -4,6 +4,7 @@ var chalk = require('chalk');
 var yosay = require('yosay');
 var _ = require('lodash');
 var path = require('path');
+var toCamelCase = require('../../utils').toCamelCase;
 
 module.exports = yeoman.generators.Base.extend({
   prompting: function () {
@@ -11,8 +12,6 @@ module.exports = yeoman.generators.Base.extend({
       type: String,
       required: true
     });
-
-    this.log(this.options);
   },
 
   writing: function () {
@@ -30,13 +29,17 @@ module.exports = yeoman.generators.Base.extend({
     this._createController();
     this._createView();
     this._createStyle();
+    this._injectIntoInit();
   },
 
   _getGeneratorParameters: function () {
+    var name = toCamelCase(this.name);
+
     return {
-      name: this.name,
-      moduleName: this.config.get('appName') + '.' + _.capitalize(this.name),
-      capitalizedName: _.capitalize(this.name)
+      defaultName: this.name,
+      name: name,
+      moduleName: this.config.get('appName') + '.' + _.capitalize(name),
+      capitalizedName: _.capitalize(name)
     };
   },
 
@@ -82,5 +85,23 @@ module.exports = yeoman.generators.Base.extend({
         module: name
       }
     });
+  },
+
+  _injectIntoInit: function () {
+    var path = this.destinationPath('src/app/init.js');
+    var initFile = this.fs.read(path);
+    var name = toCamelCase(this.name);
+    var moduleName = this.config.get('appName') + '\.' + _.capitalize(name);
+    var strForReplacing = [
+      ',\n            \'',
+      moduleName,
+      '\'/* injection */'
+    ].join('');
+
+    if (!(new RegExp(moduleName)).test(initFile)) {
+      initFile = initFile.replace(/\/\*[\s]*?injection[\s]*?\*\//, strForReplacing);
+    }
+
+    this.fs.write(path, initFile);
   }
 });

@@ -3,6 +3,7 @@ var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
 var _ = require('lodash');
+var toCamelCase = require('../../utils').toCamelCase;
 
 module.exports = yeoman.generators.Base.extend({
   prompting: function () {
@@ -17,7 +18,7 @@ module.exports = yeoman.generators.Base.extend({
       {
         type: 'input',
         name: 'module',
-        message: 'Input module name',
+        message: 'Input module name (use "-" for split words, example "test-module")',
         validate: function (module) {
           if (!module) {
             return 'Module name can\'t be empty';
@@ -58,11 +59,14 @@ module.exports = yeoman.generators.Base.extend({
   },
 
   _getGeneratorParameters: function (templateUrl) {
+    var name = toCamelCase(this.name);
+    var moduleName =  toCamelCase(this.props.module);
+
     return {
-      name: this.name,
-      capitalizedName: _.capitalize(this.name),
+      name: name,
+      capitalizedName: _.capitalize(name),
       templateUrl: templateUrl,
-      moduleName: this.config.get('appName') + '.' + this.props.module
+      moduleName: this.config.get('appName') + '.' + _.capitalize(moduleName)
     };
   },
 

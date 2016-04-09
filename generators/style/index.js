@@ -2,6 +2,7 @@
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
+var _ = require('lodash');
 
 module.exports = yeoman.generators.Base.extend({
   prompting: function () {
@@ -43,7 +44,7 @@ module.exports = yeoman.generators.Base.extend({
   _includeSCSS: function () {
     var scssPath = this.destinationPath('src/assets/styles/main.scss'),
         file = this.fs.read(scssPath),
-        includingStr = '@import "../../app/modules/' + this.name + '/styles/' + this.name + '.scss";',
+        includingStr = '@import "' + this['_get' + this.type + 'Path']().replace('src', '../..') + '";',
         updatedFile;
 
     if (!~file.indexOf(includingStr)) {

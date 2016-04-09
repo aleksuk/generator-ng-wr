@@ -6,11 +6,11 @@ var gulp = require('gulp'),
 
 function copyApp(pathToDist, prefix) {
 	return gulp.src([
-		path.join(prefix, '/app/**/*')
-	])
-		.pipe(
-		gulp.dest(path.join(pathToDist, '/app'))
-	);
+      path.join(prefix, '/app/**/*')
+    ])
+    .pipe(
+      gulp.dest(path.join(pathToDist, '/app'))
+    );
 }
 
 gulp.task('copy:app', function () {

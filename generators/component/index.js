@@ -3,6 +3,7 @@ var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
 var _ = require('lodash');
+var toCamelCase = require('../../utils').toCamelCase;
 
 module.exports = yeoman.generators.Base.extend({
   prompting: function () {
@@ -44,9 +45,11 @@ module.exports = yeoman.generators.Base.extend({
   },
 
   _getGeneratorParameters: function (templateUrl) {
-    var capitalizedName = _.capitalize(this.name);
+    var name = toCamelCase(this.name);
+    var capitalizedName = _.capitalize(name);
+
     return {
-      name: this.name,
+      name: name,
       capitalizedName: capitalizedName,
       templateUrl: templateUrl,
       moduleName: this.config.get('appName') + '.' + capitalizedName
