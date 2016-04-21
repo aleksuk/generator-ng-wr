@@ -14,7 +14,7 @@
         };
     }
 
-    function <%= capitalizedName %>Ctrl() {
+    function <%= capitalizedName %>Ctrl(<%= (service) ? name + 'Service' : '' %>) {
         var vm = this;
     }
 

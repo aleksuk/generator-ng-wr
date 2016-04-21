@@ -1,9 +1,9 @@
 'use strict';
 var yeoman = require('yeoman-generator');
-var chalk = require('chalk');
-var yosay = require('yosay');
 var _ = require('lodash');
 var toCamelCase = require('../../utils').toCamelCase;
+var includeToDependencies = require('../../utils').includeToDependencies;
+var injectToInit = require('../../utils').injectToInit;
 
 module.exports = yeoman.generators.Base.extend({
   prompting: function () {
@@ -36,12 +36,15 @@ module.exports = yeoman.generators.Base.extend({
       this.rendnerParams
     );
 
+    includeToDependencies.call(this, pathConfig.file);
+
     if (this.props.service) {
       this._createService();
     }
 
     this._createView();
     this._createStyle();
+    injectToInit.call(this);
   },
 
   _getGeneratorParameters: function (templateUrl) {
@@ -52,7 +55,8 @@ module.exports = yeoman.generators.Base.extend({
       name: name,
       capitalizedName: capitalizedName,
       templateUrl: templateUrl,
-      moduleName: this.config.get('appName') + '.' + capitalizedName
+      moduleName: this.config.get('appName') + '.' + capitalizedName,
+      service: this.props.service
     };
   },
 
@@ -71,7 +75,7 @@ module.exports = yeoman.generators.Base.extend({
     this.composeWith('ng-wr:service', {
       args: [name],
       options: {
-        module: this.rendnerParams.moduleName,
+        module: this.rendnerParams.capitalizedName,
         type: 'component'
       }
     });

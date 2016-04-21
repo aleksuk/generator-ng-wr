@@ -34,7 +34,7 @@
     }
 
     function <%= name %>Url(id) {
-        var url = '/<%= name %>';
+        var url = '/<%= defaultName %>';
 
         return (id) ? url + '/' + id : url;
     }

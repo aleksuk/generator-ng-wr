@@ -1,10 +1,10 @@
 'use strict';
 var yeoman = require('yeoman-generator');
-var chalk = require('chalk');
-var yosay = require('yosay');
 var _ = require('lodash');
 var path = require('path');
 var toCamelCase = require('../../utils').toCamelCase;
+var includeToDependencies = require('../../utils').includeToDependencies;
+var injectToInit = require('../../utils').injectToInit;
 
 module.exports = yeoman.generators.Base.extend({
   prompting: function () {
@@ -15,21 +15,24 @@ module.exports = yeoman.generators.Base.extend({
   },
 
   writing: function () {
-    var modulePath = 'app/modules/' + this.name + '/',
-        fullPath = 'src/' + modulePath,
-        params = this._getGeneratorParameters();
+    var modulePath = 'app/modules/' + this.name + '/';
+    var fullPath = 'src/' + modulePath;
+    var params = this._getGeneratorParameters();
+    var finalPath = fullPath + this.name + '.module.js';
 
     this.fs.copyTpl(
       this.templatePath('module.js'),
-      this.destinationPath(fullPath + '/' + this.name + '.module.js'),
+      this.destinationPath(finalPath),
       params
     );
+
+    includeToDependencies.call(this, finalPath);
 
     this._createService();
     this._createController();
     this._createView();
     this._createStyle();
-    this._injectIntoInit();
+    injectToInit.call(this);
   },
 
   _getGeneratorParameters: function () {
@@ -49,7 +52,8 @@ module.exports = yeoman.generators.Base.extend({
     this.composeWith('ng-wr:controller', {
       args: [name],
       options: {
-        module: name
+        module: name,
+        service: true
       }
     });
   },
@@ -85,23 +89,5 @@ module.exports = yeoman.generators.Base.extend({
         module: name
       }
     });
-  },
-
-  _injectIntoInit: function () {
-    var path = this.destinationPath('src/app/init.js');
-    var initFile = this.fs.read(path);
-    var name = toCamelCase(this.name);
-    var moduleName = this.config.get('appName') + '\.' + _.capitalize(name);
-    var strForReplacing = [
-      ',\n            \'',
-      moduleName,
-      '\'/* injection */'
-    ].join('');
-
-    if (!(new RegExp(moduleName)).test(initFile)) {
-      initFile = initFile.replace(/\/\*[\s]*?injection[\s]*?\*\//, strForReplacing);
-    }
-
-    this.fs.write(path, initFile);
   }
 });

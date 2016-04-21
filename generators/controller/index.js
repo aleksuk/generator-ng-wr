@@ -1,9 +1,8 @@
 'use strict';
 var yeoman = require('yeoman-generator');
-var chalk = require('chalk');
-var yosay = require('yosay');
 var _ = require('lodash');
 var toCamelCase = require('../../utils').toCamelCase;
+var includeToDependencies = require('../../utils').includeToDependencies;
 
 module.exports = yeoman.generators.Base.extend({
   prompting: function () {
@@ -21,12 +20,15 @@ module.exports = yeoman.generators.Base.extend({
 
   writing: function () {
     var params = this._getGeneratorParameters();
+    var path = this['_get' + this.type + 'Path']();
 
     this.fs.copyTpl(
       this.templatePath('controller.js'),
-      this.destinationPath(this['_get' + this.type + 'Path']()),
+      this.destinationPath(path),
       params
     );
+
+    includeToDependencies.call(this, path);
   },
 
   _getGeneratorParameters: function () {
@@ -36,7 +38,8 @@ module.exports = yeoman.generators.Base.extend({
     return {
       name: name,
       capitalizedName: _.capitalize(name),
-      moduleName: this.config.get('appName') + '.' + _.capitalize(moduleName)
+      moduleName: this.config.get('appName') + '.' + _.capitalize(moduleName),
+      service: this.options.service
     };
   },
 
