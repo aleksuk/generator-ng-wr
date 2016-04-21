@@ -17,48 +17,48 @@ yo ng-wr
 ```
 
 ### Project structure
-├── gulp
-├── src
-│   ├── app
-│   │   ├── components
-│   │   │   ├── clock
-│   │   │   │   ├── clock.controller.js
-│   │   │   │   ├── clock.service.js
-│   │   │   │   ├── clock.html
-│   │   │   │   └── clock.scss
-│   │   ├── modules
-│   │   │   ├── main
-│   │   │   │   ├── controllers
-│   │   │   │   │   └── main.controller.js
-│   │   │   │   ├── services
-│   │   │   │   │   └── main.service.js
-│   │   │   │   ├── views
-│   │   │   │   │   └── main.html
-│   │   │   │   ├── styles
-│   │   │   │   │   └── main.scss
-│   │   │   │   ├── directives
-│   │   │   │   │   ├── some-directive
-│   │   │   │   │   │   ├── some-directive.directive.js
-│   │   │   │   │   │   ├── some-directive.service.js
-│   │   │   │   │   │   ├── some-directive.html
-│   │   │   │   │   │   └── some-directive.scss
-│   │   ├── init.js
-│   ├── assets
-│   │   ├── libs
-│   │   ├── styles
-│   │   │   ├── partials
-│   │   │   │   ├── base.scss
-│   │   │   │   ├── mixins.scss
-│   │   │   │   └── variables.scss
-│   │   │   └── main.scss
-│   │   └── images
-│   ├── dependencies.js
-│   └── index.html
-├── .yo-rc.json
-├── .bowerrc
-├── bower.json
-├── Gulpfile.js
-├── package.json
+├── gulp  
+├── src  
+│   ├── app  
+│   │   ├── components  
+│   │   │   ├── clock  
+│   │   │   │   ├── clock.controller.js  
+│   │   │   │   ├── clock.service.js  
+│   │   │   │   ├── clock.html  
+│   │   │   │   └── clock.scss  
+│   │   ├── modules  
+│   │   │   ├── main  
+│   │   │   │   ├── controllers  
+│   │   │   │   │   └── main.controller.js  
+│   │   │   │   ├── services  
+│   │   │   │   │   └── main.service.js  
+│   │   │   │   ├── views  
+│   │   │   │   │   └── main.html  
+│   │   │   │   ├── styles  
+│   │   │   │   │   └── main.scss  
+│   │   │   │   ├── directives  
+│   │   │   │   │   ├── some-directive  
+│   │   │   │   │   │   ├── some-directive.directive.js  
+│   │   │   │   │   │   ├── some-directive.service.js  
+│   │   │   │   │   │   ├── some-directive.html  
+│   │   │   │   │   │   └── some-directive.scss  
+│   │   ├── init.js  
+│   ├── assets  
+│   │   ├── libs  
+│   │   ├── styles  
+│   │   │   ├── partials  
+│   │   │   │   ├── base.scss  
+│   │   │   │   ├── mixins.scss  
+│   │   │   │   └── variables.scss  
+│   │   │   └── main.scss  
+│   │   └── images  
+│   ├── dependencies.js  
+│   └── index.html  
+├── .yo-rc.json  
+├── .bowerrc  
+├── bower.json  
+├── Gulpfile.js  
+├── package.json  
 └── .jshintrc
 
 ## Available sub-generators
