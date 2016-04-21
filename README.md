@@ -10,10 +10,10 @@ npm install -g yo
 npm install -g generator-ng-wr
 ```
 
-Then generate your new project:
+Then generate your new project in project folder:
 
 ```bash
-yo ng-wr
+yo ng-wr project project-name
 ```
 
 ### Project structure
