@@ -13,7 +13,8 @@
                 templateUrl: 'app/modules/<%= defaultName %>/views/<%= defaultName %>.html',
                 controller: '<%= capitalizedName %>Ctrl',
                 controllerAs: '<%= name %>Ctrl'
-            });
+            })
+            /* injection */;
     }
 
 } ());

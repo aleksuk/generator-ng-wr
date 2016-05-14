@@ -19,7 +19,8 @@
                 templateUrl: 'app/modules/main/views/main.html',
                 controller: 'MainCtrl',
                 controllerAs: 'mainCtrl'
-            });
+            })
+            /* injection */;
     }
 
 } ());

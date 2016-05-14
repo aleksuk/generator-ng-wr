@@ -7,13 +7,14 @@ First, install [Yeoman](http://yeoman.io) and generator-ng-wr using [npm](https:
 
 ```bash
 npm install -g yo
+npm install -g bower
 npm install -g generator-ng-wr
 ```
 
 Then generate your new project in project folder:
 
 ```bash
-yo ng-wr project project-name
+yo ng-wr project-name
 ```
 
 ### Project structure
@@ -63,6 +64,7 @@ yo ng-wr project project-name
 
 ## Available sub-generators
 - module
+- mvc
 - component
 - directive
 
@@ -177,6 +179,9 @@ src/app/modules/module-name/styles/module-name.scss
 
 }
 ```
+
+### mvc
+In difference on module generator, mvc will add view, style, controller and service in available module.
 
 ### directive
 ```
