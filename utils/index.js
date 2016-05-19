@@ -40,7 +40,7 @@ function injectToInit() {
   var path = this.destinationPath('src/app/init.js');
   var initFile = this.fs.read(path);
   var name = toCamelCase(this.name);
-  var moduleName = this.config.get('appName') + '\.' + _.capitalize(name);
+  var moduleName = this.config.get('appName') + '\.' + _.upperFirst(name);
   var strForReplacing = [
     ',\n            \'',
     moduleName,

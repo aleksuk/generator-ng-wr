@@ -37,11 +37,11 @@ module.exports = yeoman.generators.Base.extend({
 
   _getGeneratorParameters: function () {
     var name = toCamelCase(this.name);
-
+    console.log('name:', this.config.get('appName') + '.' + _.upperFirst(name))
     return {
       defaultName: this.name,
       name: name,
-      moduleName: this.config.get('appName') + '.' + _.capitalize(name),
+      moduleName: this.config.get('appName') + '.' + _.upperFirst(name),
       capitalizedName: _.capitalize(name)
     };
   },
