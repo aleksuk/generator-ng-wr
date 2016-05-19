@@ -37,7 +37,7 @@ module.exports = yeoman.generators.Base.extend({
 
     return {
       name: name,
-      capitalizedName: _.capitalize(name),
+      capitalizedName: _.upperFirst(name),
       moduleName: this.config.get('appName') + '.' + _.upperFirst(moduleName),
       service: this.options.service
     };

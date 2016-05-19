@@ -42,7 +42,7 @@ module.exports = yeoman.generators.Base.extend({
       defaultName: this.name,
       name: name,
       moduleName: this.config.get('appName') + '.' + _.upperFirst(name),
-      capitalizedName: _.capitalize(name)
+      capitalizedName: _.upperFirst(name)
     };
   },
 
